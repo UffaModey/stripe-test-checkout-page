@@ -5,10 +5,15 @@ import os
 import stripe
 
 from flask import Flask, redirect, render_template
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+
+SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 
 app = Flask(__name__)
 
-stripe.api_key = 'sk_test_51JtarbK5xwh57OW7OrdY1oDAfdVjp7ca2XEAggdpu1OkxRUK9UDyenJbxoUfXFHsSx6FbUdBdaqJT7zXZwB4JIWq00DVGachFp'
+stripe.api_key = SECRET_KEY
 
 @app.route('/')
 def index():
